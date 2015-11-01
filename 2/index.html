@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="myApp" lang="pt-br">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta http-equip="x-ua-compatible" content="ie=edge" />
+
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      form {
+        margin-left: 5px;
+      }
+
+      form label, form input:not([type="submit"]):not([type="reset"]) {
+        display: block;
+      }
+
+      form input[type="submit"] {
+        margin-top: 10px;
+      }
+
+      form :not(.ng-pristine).ng-valid {
+        outline: 1px green solid;
+      }
+
+      form :not(.ng-pristine).ng-invalid {
+        outline: 1px red solid;
+      }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body>
+    <div ng-controller="formController as frmCtrl">
+      <form novalidate ng-submit="frmCtrl.submit();">
+        <label for="name">Nome</label>
+        <input id="name" type="text" ng-model="user.name" required />
+
+        <label for="email">E-mail</label>
+        <input id="email" type="email" ng-model="user.email" required />
+
+        <label for="cpf">CPF</label>
+        <input id="cpf" type="text" ng-model="user.cpf" required cpf-validator />
+
+        <label for="telephone">Telefone</label>
+        <input id="telephone" type="tel" ng-model="user.telephone" required />
+
+        <label for="address">Endereço</label>
+        <input id="address" type="text" ng-model="user.address" requried />
+
+        <input type="submit" value="Armazenar" />
+        <input type="reset" ng-click="frmCtrl.reset();" />
+      </form>
+
+      <div>
+        {{ user | json }}
+      </div>
+
+      <div>
+        {{ master | json }}
+      </div>
+    </div>
+  </body>
+</html>
